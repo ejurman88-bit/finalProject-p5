@@ -180,7 +180,7 @@ function mousePressed() {
       clippy.hide()
       powerPoint = false
       pptOpen = true
-      currentSlide = 0;
+      currentSlide = 0
     }
   }
 
@@ -189,10 +189,10 @@ function mousePressed() {
   let bx = windowWidth / 2 - bw / 2;
   let by = windowHeight / 2 - bh / 2;
 
-  let btnX = bx + 10;
-  let btnY = by + 10;
-  let btnW = 180;
-  let btnH = 30;
+  let btnX = bx + 10
+  let btnY = by + 10
+  let btnW = 180
+  let btnH = 30
 
   if (pptOpen) {
   
@@ -225,46 +225,46 @@ function drawSlideViewer() {
   let bx = windowWidth / 2 - bw / 2
   let by = windowHeight / 2 - bh / 2
 
-  fill(255);
-  stroke(0);
-  strokeWeight(3);
-  rect(bx, by, bw, bh, 20);
+  fill(255)
+  stroke(0)
+  strokeWeight(3)
+  rect(bx, by, bw, bh, 20)
 
-  fill(180);
-  noStroke();
-  rect(bx, by, bw, 50);
+  fill(180)
+  noStroke()
+  rect(bx, by, bw, 50)
 
-  fill(255);
-  stroke(0);
-  strokeWeight(1);
-  let btnX = bx + 10;
-  let btnY = by + 10;
-  let btnW = 180;
-  let btnH = 30;
-  rect(btnX, btnY, btnW, btnH, 6);
+  fill(255)
+  stroke(0)
+  strokeWeight(1)
+  let btnX = bx + 10
+  let btnY = by + 10
+  let btnW = 180
+  let btnH = 30
+  rect(btnX, btnY, btnW, btnH, 6)
 
   fill(0);
   textSize(16);
   textAlign(LEFT, CENTER);
   noStroke();
-  text("Close PowerPoint", btnX + 10, btnY + btnH / 2);
+  text("Close PowerPoint", btnX + 10, btnY + btnH / 2)
 
 
   fill(0);
   textSize(50);
-  textAlign(CENTER, CENTER);
+  textAlign(CENTER, CENTER)
   noStroke();
 
   if (currentSlide > 1) {
     let titleText;
     if (currentSlide === 2) {
-      titleText = "MFA site(Made For Advertisement)"; 
+      titleText = "MFA site(Made For Advertisement)" 
     } else if (currentSlide === 3) {
-      titleText = "AI Advertisements";             
+      titleText = "AI Advertisements"         
     } else {
-      titleText = "Slide " + slides[currentSlide];   
+      titleText = "Slide " + slides[currentSlide]   
     }
-    text(titleText, bx + bw / 2, by + 80);
+    text(titleText, bx + bw / 2, by + 80)
   }
 
   
@@ -272,9 +272,9 @@ function drawSlideViewer() {
     textSize(26);
     text("The modern problem with forced advertisement.",
          bx + bw / 2,
-         by + 120);
+         by + 120)
 
-    image(bonziImg, bx + bw / 2 - 100, by + 200, 200, 200);
+    image(bonziImg, bx + bw / 2 - 100, by + 200, 200, 200)
   }
 
   
@@ -282,143 +282,137 @@ function drawSlideViewer() {
     textSize(40);
     text("Tracking Cookies",
          bx + bw / 2,
-         by + 75);
+         by + 75)
 
     
-    image(instagram, bx + 40,       by + 100, 260, 300); 
-    image(amazon,    bx + bw - 300, by + 100, 260, 300); 
+    image(instagram, bx + 40,       by + 100, 260, 300)
+    image(amazon,    bx + bw - 300, by + 100, 260, 300) 
   }
-
-  
   if (currentSlide === 2) {
     
-    const imgW = 500;
-    const imgH = 280;
-    const imgX = bx + bw / 2 - imgW / 2;
-    const imgY = by + bh / 2 - imgH / 2 + 20; 
-    image(slide3, imgX, imgY, imgW, imgH);
+    const imgW = 500
+    const imgH = 280
+    const imgX = bx + bw / 2 - imgW / 2
+    const imgY = by + bh / 2 - imgH / 2 + 20 
+    image(slide3, imgX, imgY, imgW, imgH)
   }
-
-
   if (currentSlide === 3) {
     
-    const imgW = 400;
-    const imgH = 250;
+    const imgW = 400
+    const imgH = 250
     const imgX = bx + bw / 2 - imgW / 2;
-    const imgY = by + bh / 2 - imgH / 2 + 20;
-    image(coca, imgX, imgY, imgW, imgH);
+    const imgY = by + bh / 2 - imgH / 2 + 20
+    image(coca, imgX, imgY, imgW, imgH)
   }
-
-  // ---- CUSTOM CONTENT FOR SLIDE 5 (Location + Town) ----
   if (currentSlide === 4) {
-    textSize(24);
-    textAlign(CENTER, CENTER);
-    noStroke();
-    fill(0);
+    textSize(24)
+    textAlign(CENTER, CENTER)
+    noStroke()
+    fill(0)
 
-    text("Your Location:", bx + bw / 2, by + 140);
+    text("Your Location:", bx + bw / 2, by + 140)
 
     textSize(16);
-    text(locationStatus, bx + bw / 2, by + 180);
+    text(locationStatus, bx + bw / 2, by + 180)
 
     if (userLat !== null && userLon !== null) {
-      text("Latitude: " + userLat.toFixed(5),  bx + bw / 2, by + 220);
-      text("Longitude: " + userLon.toFixed(5), bx + bw / 2, by + 250);
+      text("Latitude: " + userLat.toFixed(5),  bx + bw / 2, by + 220)
+      text("Longitude: " + userLon.toFixed(5), bx + bw / 2, by + 250)
     }
 
     if (userTown !== "") {
-      text("Town: " + userTown, bx + bw / 2, by + 280);
+      text("Town: " + userTown, bx + bw / 2, by + 280)
     }
 
-    // "Share my location" button
+  
     let btnW5 = 260;
     let btnH5 = 40;
-    let btnX5 = bx + bw / 2 - btnW5 / 2;
+    let btnX5 = bx + bw / 2 - btnW5 / 2
     let btnY5 = by + 300;
 
     fill(230);
     stroke(0);
     strokeWeight(1);
-    rect(btnX5, btnY5, btnW5, btnH5, 8);
+    rect(btnX5, btnY5, btnW5, btnH5, 8)
 
     noStroke();
     fill(0);
     textSize(18);
-    text("Share my location", btnX5 + btnW5 / 2, btnY5 + btnH5 / 2);
+    text("Share my location", btnX5 + btnW5 / 2, btnY5 + btnH5 / 2)
   }
 
-  // Slide navigation hint
+
   textSize(20);
   text("(Use ← & → arrows to navigate)",
        bx + bw / 2,
-       by + bh - 40);
+       by + bh - 40)
 
-  // ---- AUDIO CONTROL FOR SLIDE 2, 3, 4 ----
+  
   if (currentSlide === 1) {
     if (slide2Sound && !slide2Sound.isPlaying()) {
-      slide2Sound.play();
+      slide2Sound.play()
     }
     if (slide3Sound && slide3Sound.isPlaying()) {
-      slide3Sound.stop();
+      slide3Sound.stop()
     }
     if (slide4Sound && slide4Sound.isPlaying()) {
-      slide4Sound.stop();
+      slide4Sound.stop()
     }
   } else if (currentSlide === 2) {
     if (slide3Sound && !slide3Sound.isPlaying()) {
-      slide3Sound.play();
+      slide3Sound.play()
     }
     if (slide2Sound && slide2Sound.isPlaying()) {
-      slide2Sound.stop();
+      slide2Sound.stop()
     }
     if (slide4Sound && slide4Sound.isPlaying()) {
-      slide4Sound.stop();
+      slide4Sound.stop()
     }
   } else if (currentSlide === 3) {
     if (slide4Sound && !slide4Sound.isPlaying()) {
-      slide4Sound.play();
+      slide4Sound.play()
     }
     if (slide2Sound && slide2Sound.isPlaying()) {
-      slide2Sound.stop();
+      slide2Sound.stop()
     }
     if (slide3Sound && slide3Sound.isPlaying()) {
-      slide3Sound.stop();
+      slide3Sound.stop()
     }
   } else {
     if (slide2Sound && slide2Sound.isPlaying()) {
-      slide2Sound.stop();
+      slide2Sound.stop()
     }
     if (slide3Sound && slide3Sound.isPlaying()) {
-      slide3Sound.stop();
+      slide3Sound.stop()
     }
     if (slide4Sound && slide4Sound.isPlaying()) {
-      slide4Sound.stop();
+      slide4Sound.stop()
     }
   }
 }
 
 function closePowerPoint() {
-  pptOpen = false;
-  powerPoint = true;
-  clippyVisible = true;
-  clippy.show();
+  pptOpen = false
+  powerPoint = true
+  clippyVisible = true
+  clippy.show()
 
-  // Stop audio if PowerPoint is closed while on slide 2, 3, or 4
+ 
   if (slide2Sound && slide2Sound.isPlaying()) {
-    slide2Sound.stop();
+    slide2Sound.stop()
   }
   if (slide3Sound && slide3Sound.isPlaying()) {
-    slide3Sound.stop();
+    slide3Sound.stop()
   }
   if (slide4Sound && slide4Sound.isPlaying()) {
-    slide4Sound.stop();
+    slide4Sound.stop()
   }
 }
 
 function keyPressed() {
   if (key === ' ') {
-    cookieSlider.show();
-    login = false;
+    cookieSlider.show()
+    login = false
   }
 
   if (pptOpen) {
@@ -432,41 +426,40 @@ function keyPressed() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  positionCookieSlider();
+  resizeCanvas(windowWidth, windowHeight)
+  positionCookieSlider()
 }
 
 function positionCookieSlider() {
-  if (!cookieSlider) return;
-  cookieSlider.position(160, 56);
+  if (!cookieSlider) return
+  cookieSlider.position(160, 56)
 }
 
-// Request browser geolocation (used on slide 5)
 function requestLocation() {
   if (!navigator.geolocation) {
-    locationStatus = "Geolocation is not supported by your browser.";
+    locationStatus = "Geolocation is not supported by your browser."
     return;
   }
 
-  locationStatus = "Requesting location...";
-  userTown = "";
+  locationStatus = "Requesting location..."
+  userTown = ""
 
   navigator.geolocation.getCurrentPosition(
     (pos) => {
       userLat = pos.coords.latitude;
       userLon = pos.coords.longitude;
-      locationStatus = "Location received:";
+      locationStatus = "Location received:"
       getTownName(userLat, userLon);
     },
     (err) => {
-      locationStatus = "Unable to retrieve location (" + err.message + ")";
+      locationStatus = "Unable to retrieve location (" + err.message + ")"
     }
-  );
+  )
 }
 
-// Reverse-geocode lat/lon to a town/city name using OpenStreetMap Nominatim
+
 function getTownName(lat, lon) {
-  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
 
   fetch(url)
     .then((res) => res.json())
@@ -477,13 +470,13 @@ function getTownName(lat, lon) {
           data.address.city ||
           data.address.village ||
           data.address.hamlet ||
-          "Unknown town";
+          "Unknown town"
       } else {
-        userTown = "Unknown town";
+        userTown = "Unknown town"
       }
     })
     .catch((err) => {
-      console.error(err);
-      userTown = "Lookup failed";
-    });
+      console.error(err)
+      userTown = "Lookup failed"
+    })
 }
