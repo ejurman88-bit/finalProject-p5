@@ -1,39 +1,33 @@
-let wallPaper;
-let cursor;
-let start;
-let errorImg;
-let loginImg;
-let login = true;
+let wallPaper
+let cursor
+let start
+let errorImg
+let loginImg
+let login = true
+let coca        
+let clippy
+let clippyVisible = false
+let powerPoint = false
+let powerPointImg
+let pptOpen = false
+let slides = []
+let currentSlide = 0
 
-let coca;        // cocacola.png
-
-let clippy;
-let clippyVisible = false;
-
-let powerPoint = false;
-let powerPointImg;
-let pptOpen = false;
-
-let slides = [];
-let currentSlide = 0;
-
-let cookieOpen = true;
-let cookieSlider;
-
-let bonziImg;     // bonzibuddy.gif image
-let amazon;       // amazon.PNG
-let instagram;    // instagram.PNG
-let slide2Sound;  // slide2.mp3
-let slide3Sound;  // slide3.mp3
-let slide4Sound;  // slide4.mp3
-let slide3;       // slide3.png
+let cookieOpen = true
+let cookieSlider
+let bonziImg     
+let amazon     
+let instagram    
+let slide2Sound 
+let slide3Sound  
+let slide4Sound  
+let slide3;       
 
 // Location globals for slide 5
-let userLat = null;
-let userLon = null;
-let locationStatus = "Click the button to share your location.";
-let userTown = ""; // town / city name from reverse geocoding
-
+let userLat = null
+let userLon = null
+let locationStatus = "Click the button to share your location."
+let userTown = ""; 
 function preload() {
   amazon = loadImage("amazon.PNG");
   instagram = loadImage("instagram.PNG");
