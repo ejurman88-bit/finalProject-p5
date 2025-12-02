@@ -21,153 +21,153 @@ let instagram
 let slide2Sound 
 let slide3Sound  
 let slide4Sound  
-let slide3;       
+let slide3       
 
-// Location globals for slide 5
+
 let userLat = null
 let userLon = null
 let locationStatus = "Click the button to share your location."
-let userTown = ""; 
+let userTown = ""
 function preload() {
-  amazon = loadImage("amazon.PNG");
-  instagram = loadImage("instagram.PNG");
-  slide3 = loadImage("slide3.png");
-  coca = loadImage("cocacola.png");
+  amazon = loadImage("amazon.PNG")
+  instagram = loadImage("instagram.PNG")
+  slide3 = loadImage("slide3.png")
+  coca = loadImage("cocacola.png")
 
-  wallPaper = loadImage("wallPaper.jpg");
-  cursor = loadImage("cursor-png.png");
-  start = loadImage("start.png");
-  errorImg = loadImage("error.png");
-  powerPointImg = loadImage("Powerpoint.png");
-  loginImg = loadImage("login.png");
-  bonziImg = loadImage("bonzibuddy.gif"); // load BonziBuddy GIF
+  wallPaper = loadImage("wallPaper.jpg")
+  cursor = loadImage("cursor-png.png")
+  start = loadImage("start.png")
+  errorImg = loadImage("error.png")
+  powerPointImg = loadImage("Powerpoint.png")
+  loginImg = loadImage("login.png")
+  bonziImg = loadImage("bonzibuddy.gif")
 
-  // load audio for slide 2, 3, 4
-  slide2Sound = loadSound("slide2.mp3");
-  slide3Sound = loadSound("slide3.mp3");
-  slide4Sound = loadSound("slide4.mp3");
+  
+  slide2Sound = loadSound("slide2.mp3")
+  slide3Sound = loadSound("slide3.mp3")
+  slide4Sound = loadSound("slide4.mp3")
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  imageMode(CORNER);
-  noCursor();
+  createCanvas(windowWidth, windowHeight)
+  imageMode(CORNER)
+  noCursor()
 
-  clippy = createImg("would-you-like-help-clippy.gif");
-  clippy.hide();
+  clippy = createImg("would-you-like-help-clippy.gif")
+  clippy.hide()
 
-  cookieSlider = createSlider(0, 1, 0, 1);
-  cookieSlider.style('width', '140px');
-  cookieSlider.hide();
+  cookieSlider = createSlider(0, 1, 0, 1)
+  cookieSlider.style('width', '140px')
+  cookieSlider.hide()
   cookieSlider.input(() => {
     if (cookieSlider.value() === 1) {
-      cookieOpen = false;
-      cookieSlider.remove();
-      showClippy();
+      cookieOpen = false
+      cookieSlider.remove()
+      showClippy()
     }
-  });
+  })
 
-  positionCookieSlider();
+  positionCookieSlider()
 
   for (let i = 1; i <= 5; i++) {
-    slides.push(i);
+    slides.push(i)
   }
 }
 
 function draw() {
   if (login) {
-    image(loginImg, 0, 0, windowWidth, windowHeight);
-    image(cursor, mouseX, mouseY, 30, 30);
-    return;
+    image(loginImg, 0, 0, windowWidth, windowHeight)
+    image(cursor, mouseX, mouseY, 30, 30)
+    return
   }
 
-  background(100);
+  background(100)
   image(wallPaper, 0, 0, windowWidth, windowHeight);
 
-  const barHeight = 35;
-  fill(180);
-  noStroke();
-  rect(0, height - barHeight, width, barHeight);
-  image(start, 5, height - barHeight + 2, 36, 36);
+  const barHeight = 35
+  fill(180)
+  noStroke()
+  rect(0, height - barHeight, width, barHeight)
+  image(start, 5, height - barHeight + 2, 36, 36)
 
   if (cookieOpen && !pptOpen) {
-    const boxH = 90;
-    fill(255, 255, 255, 235);
-    rect(0, 0, width, boxH);
+    const boxH = 90
+    fill(255, 255, 255, 235)
+    rect(0, 0, width, boxH)
 
-    fill(20);
-    textSize(20);
-    text("Do you accept all cookies?", 20, 16);
-    textSize(12);
-    text("Slide to accept ➜", 20, 50);
+    fill(20)
+    textSize(20)
+    text("Do you accept all cookies?", 20, 16)
+    textSize(12)
+    text("Slide to accept ➜", 20, 50)
   }
 
   if (clippyVisible && !pptOpen) {
-    drawClippySpeech();
+    drawClippySpeech()
   }
 
   if (powerPoint && !pptOpen) {
-    image(powerPointImg, 0, 300, 325, 250);
+    image(powerPointImg, 0, 300, 325, 250)
 
-    fill(255);
-    stroke(0);
-    strokeWeight(2);
-    rect(100, 300, 150, 40, 10);
+    fill(255)
+    stroke(0)
+    strokeWeight(2)
+    rect(100, 300, 150, 40, 10)
 
-    noStroke();
-    fill(0);
-    textSize(18);
-    textAlign(CENTER, CENTER);
-    text("Click me", 175, 320);
+    noStroke()
+    fill(0)
+    textSize(18)
+    textAlign(CENTER, CENTER)
+    text("Click me", 175, 320)
   }
 
   if (pptOpen) {
-    drawSlideViewer();
+    drawSlideViewer()
   }
 
-  image(cursor, mouseX, mouseY, 30, 30);
+  image(cursor, mouseX, mouseY, 30, 30)
 }
 
 function showClippy() {
-  clippyVisible = true;
-  clippy.show();
-  clippy.position(windowWidth / 2 - 150, windowHeight / 2 - 150);
+  clippyVisible = true
+  clippy.show()
+  clippy.position(windowWidth / 2 - 150, windowHeight / 2 - 150)
 }
 
 function drawClippySpeech() {
-  let boxW = 720;
-  let boxH = 80;
-  let boxX = windowWidth / 2 - boxW / 2;
-  let boxY = windowHeight / 2 - boxH - 160;
+  let boxW = 720
+  let boxH = 80
+  let boxX = windowWidth / 2 - boxW / 2
+  let boxY = windowHeight / 2 - boxH - 160
 
-  fill(255);
-  stroke(0);
-  strokeWeight(2);
-  rect(boxX, boxY, boxW, boxH, 12);
+  fill(255)
+  stroke(0)
+  strokeWeight(2)
+  rect(boxX, boxY, boxW, boxH, 12)
 
-  fill(0);
-  textSize(16);
-  textAlign(CENTER, CENTER);
-  noStroke();
+  fill(0)
+  textSize(16)
+  textAlign(CENTER, CENTER)
+  noStroke()
   text(
     "Hi there! My name’s Clippy and I am here to teach you some IMPORTANT information CLICK ME!",
     boxX + boxW / 2,
     boxY + boxH / 2
-  );
+  )
 }
 
 function mousePressed() {
   if (!pptOpen && clippyVisible) {
-    let cx = windowWidth / 2 - 150;
-    let cy = windowHeight / 2 - 150;
-    let cw = 300;
-    let ch = 300;
+    let cx = windowWidth / 2 - 150
+    let cy = windowHeight / 2 - 150
+    let cw = 300
+    let ch = 300
 
     if (
       mouseX > cx && mouseX < cx + cw &&
       mouseY > cy && mouseY < cy + ch
     ) {
-      powerPoint = true;
+      powerPoint = true
     }
   }
 
@@ -176,16 +176,16 @@ function mousePressed() {
       mouseX > 0 && mouseX < 325 &&
       mouseY > 300 && mouseY < 550
     ) {
-      clippyVisible = false;
-      clippy.hide();
-      powerPoint = false;
-      pptOpen = true;
+      clippyVisible = false
+      clippy.hide()
+      powerPoint = false
+      pptOpen = true
       currentSlide = 0;
     }
   }
 
-  let bw = 800;
-  let bh = 450;
+  let bw = 800
+  let bh = 450
   let bx = windowWidth / 2 - bw / 2;
   let by = windowHeight / 2 - bh / 2;
 
@@ -195,20 +195,19 @@ function mousePressed() {
   let btnH = 30;
 
   if (pptOpen) {
-    // Close PowerPoint button
+  
     if (
       mouseX > btnX && mouseX < btnX + btnW &&
       mouseY > btnY && mouseY < btnY + btnH
     ) {
-      closePowerPoint();
+      closePowerPoint()
     }
 
-    // Slide 5 "Share my location" button
     if (currentSlide === 4) {
-      let btnW5 = 260;
-      let btnH5 = 40;
-      let btnX5 = bx + bw / 2 - btnW5 / 2;
-      let btnY5 = by + 300;
+      let btnW5 = 260
+      let btnH5 = 40
+      let btnX5 = bx + bw / 2 - btnW5 / 2
+      let btnY5 = by + 300
 
       if (
         mouseX > btnX5 && mouseX < btnX5 + btnW5 &&
@@ -221,10 +220,10 @@ function mousePressed() {
 }
 
 function drawSlideViewer() {
-  let bw = 800;
-  let bh = 450;
-  let bx = windowWidth / 2 - bw / 2;
-  let by = windowHeight / 2 - bh / 2;
+  let bw = 800
+  let bh = 450
+  let bx = windowWidth / 2 - bw / 2
+  let by = windowHeight / 2 - bh / 2
 
   fill(255);
   stroke(0);
@@ -250,8 +249,7 @@ function drawSlideViewer() {
   noStroke();
   text("Close PowerPoint", btnX + 10, btnY + btnH / 2);
 
-  // MAIN SLIDE TITLE:
-  // hidden on slide 1 & 2; on slide 3 custom; on slide 4 "AI Advertisements"; slide 5 "Slide 5"
+
   fill(0);
   textSize(50);
   textAlign(CENTER, CENTER);
@@ -260,16 +258,16 @@ function drawSlideViewer() {
   if (currentSlide > 1) {
     let titleText;
     if (currentSlide === 2) {
-      titleText = "MFA site(Made For Advertisement)"; // Slide 3 title
+      titleText = "MFA site(Made For Advertisement)"; 
     } else if (currentSlide === 3) {
-      titleText = "AI Advertisements";                // Slide 4 title
+      titleText = "AI Advertisements";             
     } else {
-      titleText = "Slide " + slides[currentSlide];    // Slide 5 etc.
+      titleText = "Slide " + slides[currentSlide];   
     }
     text(titleText, bx + bw / 2, by + 80);
   }
 
-  // ---- CUSTOM CONTENT FOR SLIDE 1 ----
+  
   if (currentSlide === 0) {
     textSize(26);
     text("The modern problem with forced advertisement.",
@@ -279,31 +277,31 @@ function drawSlideViewer() {
     image(bonziImg, bx + bw / 2 - 100, by + 200, 200, 200);
   }
 
-  // ---- CUSTOM CONTENT FOR SLIDE 2 ----
+  
   if (currentSlide === 1) {
     textSize(40);
     text("Tracking Cookies",
          bx + bw / 2,
          by + 75);
 
-    // Logos on the sides
-    image(instagram, bx + 40,       by + 100, 260, 300);  // Left side
-    image(amazon,    bx + bw - 300, by + 100, 260, 300);  // Right side
+    
+    image(instagram, bx + 40,       by + 100, 260, 300); 
+    image(amazon,    bx + bw - 300, by + 100, 260, 300); 
   }
 
-  // ---- CUSTOM CONTENT FOR SLIDE 3 ----
+  
   if (currentSlide === 2) {
-    // Center slide3.png in the middle of the slide window
+    
     const imgW = 500;
     const imgH = 280;
     const imgX = bx + bw / 2 - imgW / 2;
-    const imgY = by + bh / 2 - imgH / 2 + 20; // slight downward offset
+    const imgY = by + bh / 2 - imgH / 2 + 20; 
     image(slide3, imgX, imgY, imgW, imgH);
   }
 
-  // ---- CUSTOM CONTENT FOR SLIDE 4 ----
+
   if (currentSlide === 3) {
-    // Show cocacola.png in the middle-ish of the slide
+    
     const imgW = 400;
     const imgH = 250;
     const imgX = bx + bw / 2 - imgW / 2;
