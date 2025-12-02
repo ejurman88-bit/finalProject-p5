@@ -1,0 +1,191 @@
+
+function setup() {
+  createCanvas(900, 550);
+  noStroke();
+}
+
+function draw() {
+  // Sky
+  background(135, 206, 235); // light blue sky
+
+  // Sun
+  drawSun(90, 90, 60);
+
+  // Distant hills
+  fill(90, 170, 90);
+  ellipse(250, 380, 450, 200);
+  ellipse(650, 380, 500, 220);
+
+  // Ground
+  fill(43, 160, 58);
+  rect(0, 380, width, height - 380);
+
+  // Dirt path
+  fill(200, 170, 120);
+  beginShape();
+  vertex(400, 380);
+  vertex(500, 380);
+  vertex(650, height);
+  vertex(280, height);
+  endShape(CLOSE);
+
+  // Barn
+  drawBarn(540, 290, 220, 160);
+
+  // Fence (foreground)
+  drawFence(40, 410, 780, 7, 80, 6);
+
+  // Tree
+  drawTree(180, 320, 26);
+
+  // Pond
+  drawPond(210, 460, 180, 70);
+
+  // Sheep (made of ellipses)
+  drawSheep(320, 430, 1.0);
+  drawSheep(380, 450, 0.8);
+  drawSheep(270, 470, 0.9);
+
+  // Tiny house in distance (just for fun)
+  drawTinyHouse(160, 345);
+}
+
+/* ---------- Pieces ---------- */
+
+function drawSun(x, y, r) {
+  push();
+  translate(x, y);
+  // rays
+  stroke(255, 220, 50);
+  strokeWeight(6);
+  for (let a = 0; a < TWO_PI; a += PI / 8) {
+    let x1 = cos(a) * (r + 8);
+    let y1 = sin(a) * (r + 8);
+    let x2 = cos(a) * (r + 30);
+    let y2 = sin(a) * (r + 30);
+    line(x1, y1, x2, y2);
+  }
+  noStroke();
+  fill(255, 223, 0);
+  circle(0, 0, r * 2);
+  pop();
+}
+
+function drawBarn(x, y, w, h) {
+  // Body
+  fill(170, 20, 30);
+  rect(x, y, w, h, 6);
+
+  // Roof
+  fill(140, 10, 20);
+  let roofHeight = 60;
+  triangle(x - 10, y, x + w / 2, y - roofHeight, x + w + 10, y);
+
+  // Door
+  let doorW = w * 0.28;
+  let doorH = h * 0.55;
+  let doorX = x + w * 0.36;
+  let doorY = y + h - doorH;
+  fill(90, 40, 20);
+  rect(doorX, doorY, doorW, doorH, 4);
+
+  // Door crossbars
+  stroke(230);
+  strokeWeight(3);
+  line(doorX, doorY + doorH * 0.5, doorX + doorW, doorY + doorH * 0.5);
+  line(doorX, doorY, doorX + doorW, doorY + doorH);
+  line(doorX + doorW, doorY, doorX, doorY + doorH);
+  noStroke();
+
+  // Windows
+  fill(235);
+  let winSize = 28;
+  rect(x + 25, y + 35, winSize, winSize, 4);
+  rect(x + w - 25 - winSize, y + 35, winSize, winSize, 4);
+
+  // Window panes
+  stroke(140, 10, 20);
+  strokeWeight(3);
+  let w1x = x + 25, w1y = y + 35;
+  line(w1x, w1y + winSize / 2, w1x + winSize, w1y + winSize / 2);
+  line(w1x + winSize / 2, w1y, w1x + winSize / 2, w1y + winSize);
+  let w2x = x + w - 25 - winSize, w2y = y + 35;
+  line(w2x, w2y + winSize / 2, w2x + winSize, w2y + winSize / 2);
+  line(w2x + winSize / 2, w2y, w2x + winSize / 2, w2y + winSize);
+  noStroke();
+}
+
+function drawFence(x, y, totalW, posts, postH, railThick) {
+  // Rails
+  fill(230, 220, 200);
+  rect(x, y + 15, totalW, railThick, 4);
+  rect(x, y + 40, totalW, railThick, 4);
+
+  // Posts
+  let spacing = totalW / (posts - 1);
+  for (let i = 0; i < posts; i++) {
+    let px = x + i * spacing;
+    rect(px - 6, y, 12, postH, 3);
+  }
+}
+
+function drawTree(x, y, trunkW) {
+  // Trunk
+  fill(110, 70, 40);
+  rect(x - trunkW / 2, y, trunkW, 90, 4);
+  // Foliage
+  fill(40, 140, 60);
+  ellipse(x, y - 10, 120, 90);
+  ellipse(x - 45, y + 10, 100, 70);
+  ellipse(x + 45, y + 10, 100, 70);
+}
+
+function drawPond(cx, cy, w, h) {
+  fill(100, 180, 230, 220);
+  ellipse(cx, cy, w, h);
+  fill(255, 255, 255, 130);
+  ellipse(cx + 30, cy - 15, w * 0.4, h * 0.3);
+}
+
+function drawSheep(x, y, s) {
+  push();
+  translate(x, y);
+  scale(s);
+
+  // Body fluff
+  fill(250);
+  ellipse(0, 0, 90, 60);
+  ellipse(-25, -5, 40, 35);
+  ellipse(25, -5, 40, 35);
+
+  // Head
+  fill(50);
+  ellipse(45, -10, 30, 25);
+  // Ear
+  ellipse(55, -20, 10, 14);
+
+  // Eye
+  fill(255);
+  circle(50, -12, 8);
+  fill(0);
+  circle(52, -12, 3);
+
+  // Legs
+  fill(40);
+  rect(-20, 22, 6, 18, 2);
+  rect(-2, 22, 6, 18, 2);
+  rect(16, 22, 6, 18, 2);
+  rect(32, 22, 6, 18, 2);
+
+  pop();
+}
+
+function drawTinyHouse(x, y) {
+  fill(220, 170, 120);
+  rect(x, y, 34, 26, 3);
+  fill(150, 80, 40);
+  triangle(x - 4, y, x + 17, y - 18, x + 38, y);
+  fill(100, 50, 30);
+  rect(x + 12, y + 10, 8, 16, 2);
+}
+
